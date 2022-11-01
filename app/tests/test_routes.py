@@ -18,7 +18,7 @@ def test_predict_route():
     app = Flask(__name__)
     configure_routes(app)
     client = app.test_client()
-    url = '/predictor'
+    url = '/predict'
  
     response = client.get(url)
     sample_data = [[school], [traveltime], [studytime], [failures],
