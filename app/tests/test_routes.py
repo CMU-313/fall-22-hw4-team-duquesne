@@ -51,7 +51,7 @@ def test_predict_route():
     "activities": "yes", "higher": "yes", "internet": "yes", "freetime": 3, "dalc": 3, "walc": 5, "absences": 93}]
     #invalid walc
     badWalc = [{"school": 12, "traveltime": 0, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
-    "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": "yo", "absences": 0}
+    "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": "yo", "absences": 0}]
    
     
     assert response.status_code == 200
