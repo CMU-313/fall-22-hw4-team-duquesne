@@ -1,0 +1,228 @@
+openapi: 3.0.3
+info:
+  title: Teedy Microservices API
+  description: 
+    Documentation covering the API of a new machine learning microservice that predicts potential applicant success. 
+  version: 1.0.0
+externalDocs:
+  description: Visit github repository
+  url: https://github.com/CMU-313/fall-22-hw4-team-duquesne
+servers:
+  - url: http://localhost:8080/src
+tags:
+  - name: predict
+    description: Student G3 grade predictor
+paths:
+  /predict:
+    put:
+      tags:
+        - predict
+      summary: Update student data
+      description: Update the whole student data
+      operationId: updateStudent
+      requestBody:
+        description: Update the student data that's being evaluated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/student'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/student'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/student'
+        '400':
+          description: Invalid Data
+    get:
+      tags:
+        - predict
+      summary: Return student data
+      description: Returns the whole student data file
+      operationId: getStudentData
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/student'
+        '400':
+          description: No Student Data
+    delete:
+      tags:
+        - predict
+      summary: Delete student data
+      description: Delete all student data
+      operationId: deleteStudentData
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: No student data to delete
+  /predict/g3Prediction:
+    get:
+      tags:
+        - predict
+      summary: Returns student G3 grade prediction
+      description: Returns the string form of a number between 0-20, with 0 being the lowest and 20 the being highest. 
+      operationId: returnPredictionResult
+      responses:
+        '200':
+          description: successful operation
+          content:
+            text/plain:
+              schema:
+                type: integer
+                example: "16"
+        '400':
+          description: Invalid status value
+
+components:
+  schemas:
+    student:
+      type: object
+      properties:
+        school:
+          type: string
+          description: "Student's school (binary: GP - Gabriel Pereira or MS - Mousinho da Silveira"
+          example: GP
+        traveltime:
+          type: integer
+          format: int
+          description: 'Home to school travel time (numeric: 1 - <15 min., 2 - 15 to 30 min., 3 - 30 min. to 1 hour, or 4 - >1 hour)'
+          example: 3
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+        studytime:
+          type: integer
+          format: int
+          description: 'Weekly study time (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, or 4 - >10 hours)'
+          example: 3
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+        failures:
+          type: integer
+          format: int
+          description: 'Number of past class failures (numeric: n if 1<=n<3, else 4)'
+          example: 2
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+        schoolsup:
+          type: string
+          description: 'extra educational support (binary: yes or no)'
+          example: 'yes'
+          enum:
+            - 'yes'
+            - 'no'
+        famsup:
+          type: string
+          description: 'Family educational support (binary: yes or no)'
+          example: 'yes'
+          enum:
+            - 'yes'
+            - 'no'
+        paid:
+          type: string
+          description: 'Extra paid classes within the course subject (binary: yes or no)'
+          example: 'yes'
+          enum:
+            - 'yes'
+            - 'no'
+        activities:
+          type: string
+          description: 'Extra-curricular activities (binary: yes or no)'
+          example: 'no'
+          enum:
+            - 'yes'
+            - 'no'
+        higher:
+          type: string
+          description: 'Wants to take higher education (binary: yes or no)'
+          example: 'yes'
+          enum:
+            - 'yes'
+            - 'no'
+        internet:
+          type: string
+          description: 'Internet access at home (binary: yes or no)'
+          example: 'yes'
+          enum:
+            - 'yes'
+            - 'no'
+        freetime:
+          type: integer
+          format: int
+          description: 'Free time after school (numeric: from 1 - very low to 5 - very high)'
+          example: 3
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        dalc:
+          type: integer
+          format: int
+          description: 'Workday alcohol consumption (numeric: from 1 - very low to 5 - very high)'
+          example: 3
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        walc:
+          type: integer
+          format: int
+          description: 'Weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)'
+          example: 3
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+        absence:
+          type: integer
+          format: int
+          description: 'Number of school absences (numeric: from 0 to 93)'
+          example: 34
+      xml:
+        name: student
+  requestBodies:
+    student:
+      description: student object that needs to be added to the predictor
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/student'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/student'
+
+
