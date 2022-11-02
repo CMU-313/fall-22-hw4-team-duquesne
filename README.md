@@ -104,4 +104,4 @@ If you're not in the Pipenv shell, then execute the following command from the `
 pipenv run pytest
 ```
 
-yaml documentation can be found ni the openapi.yaml file
+yaml documentation can be found in the openapi.yaml file
