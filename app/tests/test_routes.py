@@ -55,8 +55,8 @@ def test_predict_route():
    
     
     assert response.status_code == 200
-    assert response.get_data(currentJson) = {"prediction": [12, 9, 5, 18, 19, 3, 5, 7]}
-    assert response.get_data(badStudy) = {"prediction": [0]}
-    assert response.get_data(badInternet) = {"prediction": [0]}
-    assert response.get_data(badSchoolsUp) = {"prediction": [0]}
-    assert response.get_data(badWalc) = {"prediction": [0]}
+    assert response.get_data(currentJson) == {"prediction": [12, 9, 5, 18, 19, 3, 5, 7]}
+    assert response.get_data(badStudy) == {"prediction": [0]}
+    assert response.get_data(badInternet) == {"prediction": [0]}
+    assert response.get_data(badSchoolsUp) == {"prediction": [0]}
+    assert response.get_data(badWalc) == {"prediction": [0]}
