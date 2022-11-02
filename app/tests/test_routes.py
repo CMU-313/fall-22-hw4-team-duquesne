@@ -30,13 +30,13 @@ def test_predict_route():
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": 4, "absences": 0},
     {"school": "MS", "traveltime": 3, "studytime": 0, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": 4, "absences": 0}, 
-    {"school": "GP", "traveltime": 0, "studytime": 0, "schoolsup": "no", "famsup": "no", "paid": "yes", 
+    {"school": "GP", "traveltime": 1, "studytime": 0, "schoolsup": "no", "famsup": "no", "paid": "yes", 
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": 4, "absences": 0}, 
-    {"school": "GP", "traveltime": 0, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
+    {"school": "GP", "traveltime": 2, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": 4, "absences": 0}, 
-    {"school": "GP", "traveltime": 0, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
+    {"school": "GP", "traveltime": 1, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": 4, "absences": 0}, 
-    {"school": 12, "traveltime": 0, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
+    {"school": "MS", "traveltime": 3, "studytime": 4, "schoolsup": "yes", "famsup": "no", "paid": "yes", 
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": 4, "absences": 0}
     ]
 

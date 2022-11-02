@@ -105,3 +105,6 @@ pipenv run pytest
 ```
 
 yaml documentation can be found in the openapi.yaml file
+
+Configured data fields to match endpoints design can be found in app/handlers/routes.py
+API tests can be found in app/tests/test_routes.py
