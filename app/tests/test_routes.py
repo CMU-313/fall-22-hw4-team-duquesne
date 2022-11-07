@@ -54,8 +54,8 @@ def test_predict_route():
     "activities": "no", "higher": "no", "internet": "no", "freetime": 3, "dalc": 3, "walc": "yo", "absences": 0}]
    
     assert response.status_code == 200
-    assert requests.post(url, data=correctJson) == {"prediction": [12, 9, 5, 18, 19, 3, 5, 7]}
-    assert requests.post(url, data=badStudy) == {"prediction": [0]}
-    assert requests.post(url, data=badInternet) == {"prediction": [0]}
-    assert requests.post(url, data=badSchoolsUp) == {"prediction": [0]}
-    assert requests.post(url, data=badWalc) == {"prediction": [0]}
+    assert response.post(url, data=correctJson) == {"prediction": [12, 9, 5, 18, 19, 3, 5, 7]}
+    assert response.post(url, data=badStudy) == {"prediction": [0]}
+    assert response.post(url, data=badInternet) == {"prediction": [0]}
+    assert response.post(url, data=badSchoolsUp) == {"prediction": [0]}
+    assert response.post(url, data=badWalc) == {"prediction": [0]}
