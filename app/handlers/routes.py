@@ -24,7 +24,7 @@ def configure_routes(app):
         #             absences
         # numerical values
         absences = request.args.get('absences')
-        traveltime = request.args.get('travaltime')
+        traveltime = request.args.get('traveltime')
         studytime = request.args.get('studytime')
         dalc = request.args.get('Dalc')
         walc = request.args.get('Walc')
@@ -63,7 +63,6 @@ def configure_routes(app):
         else:
             famsup_nan = 1
         
-
         higher_no, higher_yes, famsup_nan = 0,0,0
         if higher == 'yes':
             higher_yes = 1
@@ -96,21 +95,44 @@ def configure_routes(app):
         else:
             school_nan = 1
         print(absences)
-        data = [[traveltime], [studytime],[freetime],[dalc],[walc], [absences]]
+        data = [[dalc], [walc], [absences],
+                [freetime], [studytime], [traveltime], 
+                [activities_no], [activities_yes], 
+                [famsup_no], [famsup_yes], 
+                [higher_no], [higher_yes], 
+                [internet_no], [internet_yes], 
+                [paid_no], [paid_yes], 
+                [school_GP], [school_MS], 
+                [schoolsup_no], [schoolsup_yes]]
+        print(data)
         query_df = pd.DataFrame(data = {
-            'traveltime': pd.Series(traveltime),
-            'studytime': pd.Series(studytime),
-            'freetime': pd.Series(freetime),
             'Dalc': pd.Series(dalc),
             'Walc': pd.Series(walc),
-            'absences': pd.Series(absences)
+            'absences': pd.Series(absences),
+            'freetime': pd.Series(freetime),
+            'studytime': pd.Series(studytime),
+            'traveltime': pd.Series(traveltime),
+            'activities_no': pd.Series(activities_no),
+            'activities_yes': pd.Series(activities_yes),
+            'famsup_no': pd.Series(famsup_no),
+            'famsup_yes': pd.Series(famsup_yes),
+            'higher_no': pd.Series(higher_no),
+            'higher_yes': pd.Series(higher_yes),
+            'internet_no': pd.Series(internet_no),
+            'internet_yes': pd.Series(internet_yes),
+            'paid_no': pd.Series(paid_no),
+            'paid_yes': pd.Series(paid_yes),
+            'school_GP': pd.Series(school_GP),
+            'school_MS': pd.Series(school_MS),
+            'schoolsup_no': pd.Series(schoolsup_no),
+            'schoolsup_yes': pd.Series(schoolsup_yes)
             },
-            index = ['traveltime', 'studytime', 'freetime', 'Dalc', 'Walc', 'absences'])
-        query = pd.get_dummies(query_df)
+            index = [0])
+        # query = pd.get_dummies(query_df)
         print(query_df)
-        print(query)
-        prediction = clf.predict(query)
-        return jsonify(np.asscalar(prediction))
+        # print(query)
+        prediction = clf.predict(query_df)
+        return jsonify(np.ndarray.item(prediction))
         # school = request.args.get('school')
         # traveltime = request.args.get('travaltime')
         # studytime = request.args.get('studytime')

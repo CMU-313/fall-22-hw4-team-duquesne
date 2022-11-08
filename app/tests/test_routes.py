@@ -19,18 +19,22 @@ def test_predict_route():
     configure_routes(app)
     client = app.test_client()
     url = '/predict'
- 
-    response = client.get(url)
-    correctJson = [{"traveltime": 2, "studytime": 2, "freetime": 3, 
-                    "Dalc": 1, "Walc": 1, "absences": 6}, # line 1, G3 = 6
-                   {"traveltime": 1, "studytime": 3, "freetime": 2, 
-                    "Dalc": 1, "Walc": 1, "absences": 5}, # line 5, G3 = 15
-                   {"traveltime": 1, "studytime": 2, "freetime": 3, 
-                    "Dalc": 1, "Walc": 2, "absences": 0}, # line 12, G3 = 9
-                  ]
+    test1 = '?absences=10&school=MS&studytime=2&traveltime=2&schoolsup=yes&famsup=yes&paid=yes&activities=no&higher=yes&internet=yes&freetime=2&Dalc=1&Walc=1'
+    response = client.get(url+test1)
+    # correctJson = [{"traveltime": 2, "studytime": 2, "freetime": 3, 
+    #                 "Dalc": 1, "Walc": 1, "absences": 6}, # line 1, G3 = 6
+    #                {"traveltime": 1, "studytime": 3, "freetime": 2, 
+    #                 "Dalc": 1, "Walc": 1, "absences": 5}, # line 5, G3 = 15
+    #                {"traveltime": 1, "studytime": 2, "freetime": 3, 
+    #                 "Dalc": 1, "Walc": 2, "absences": 0}, # line 12, G3 = 9
+                #   ]
+    correctJson = [
+    {"school": "GP", "traveltime": 1, "studytime": 2, "schoolsup": "no", "famsup": "no", "paid": "yes", 
+    "activities": "yes", "higher": "yes", "internet": "yes", "freetime": 3, "dalc": 3, "walc": 4, "absences": 12},
+    ]
 
     assert response.status_code == 200
-    assert response.post(url, data=correctJson) == {"prediction": [{6}, {15}, {9}]}
+    assert response.get_data() == b'0\n'
 
     # correctJson = [
     # {"school": "GP", "traveltime": 1, "studytime": 2, "schoolsup": "no", "famsup": "no", "paid": "yes", 
