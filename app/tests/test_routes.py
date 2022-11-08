@@ -14,13 +14,14 @@ def test_base_route():
     assert response.status_code == 200
     assert response.get_data() == b'try the predict route it is great!'
 
-def test_predict_route():
+def test_predict_route_valid1():
     app = Flask(__name__)
     configure_routes(app)
     client = app.test_client()
     url = '/predict'
     test1 = '?absences=10&school=MS&studytime=2&traveltime=2&schoolsup=yes&famsup=yes&paid=yes&activities=no&higher=yes&internet=yes&freetime=2&Dalc=1&Walc=1'
     response = client.get(url+test1)
+    
     # correctJson = [{"traveltime": 2, "studytime": 2, "freetime": 3, 
     #                 "Dalc": 1, "Walc": 1, "absences": 6}, # line 1, G3 = 6
     #                {"traveltime": 1, "studytime": 3, "freetime": 2, 
@@ -28,11 +29,18 @@ def test_predict_route():
     #                {"traveltime": 1, "studytime": 2, "freetime": 3, 
     #                 "Dalc": 1, "Walc": 2, "absences": 0}, # line 12, G3 = 9
                 #   ]
-    correctJson = [
-    {"school": "GP", "traveltime": 1, "studytime": 2, "schoolsup": "no", "famsup": "no", "paid": "yes", 
-    "activities": "yes", "higher": "yes", "internet": "yes", "freetime": 3, "dalc": 3, "walc": 4, "absences": 12},
-    ]
 
+    assert response.status_code == 200
+    assert response.get_data() == b'0\n'
+
+
+def test_predict_route_valid2():
+    app = Flask(__name__)
+    configure_routes(app)
+    client = app.test_client()
+    url = '/predict'
+    test2 = '?absences=6&school=MS&studytime=2&traveltime=1&schoolsup=yes&famsup=yes&paid=yes&activities=yes&higher=yes&internet=yes&freetime=2&Dalc=1&Walc=1'
+    response = client.get(url+test2)
     assert response.status_code == 200
     assert response.get_data() == b'0\n'
 
