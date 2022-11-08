@@ -37,8 +37,7 @@ def configure_routes(app):
         dalc = request.args.get('Dalc')
         walc = request.args.get('Walc')
         absences = request.args.get('absences')
-        schoolsup_no, schoolsup_yes = 0,0
-        schoolsup_nan = 0
+        schoolsup_no, schoolsup_yes, schoolsup_nan = 0,0
         if schoolsup == 'yes':
             schoolsup_yes = 1
         elif schoolsup == 'no':
@@ -46,41 +45,55 @@ def configure_routes(app):
         else:
             schoolsup_nan = 1
         
-        activities_no, activities_yes = 0,0
+        activities_no, activities_yes, actitvities_nan = 0,0,0
+
         if activities == 'yes':
             activities_yes = 1
         elif activities == 'no':
             activities_no = 1
-        
-        famsup_no, famsup_yes = 0,0
+        else:
+            activities_nan = 1
+
+        famsup_no, famsup_yes, famsup_nan = 0,0,0
         if famsup == 'yes':
             famsup_yes = 1
         elif famsup == 'no':
             famsup_no = 1
+        else:
+            famsup_nan = 1
+        
 
-        higher_no, higher_yes = 0,0
+        higher_no, higher_yes, famsup_nan = 0,0,0
         if higher == 'yes':
             higher_yes = 1
         elif higher == 'no':
             higher_no = 1
+        else:
+            higher_nan = 1
 
-        internet_no, internet_yes = 0,0
+        internet_no, internet_yes, internet_nan = 0,0,0
         if internet == 'yes':
             internet_yes = 1
         elif internet == 'no':
             internet_no = 1
+        else:
+            internet_nan = 1
         
-        paid_no, paid_yes = 0,0
+        paid_no, paid_yes, paid_nan = 0,0,0
         if paid == 'yes':
             paid_yes = 1
         elif paid == 'no':
             paid_no = 1
+        else:
+            paid_nan = 1
         
-        school_GP, school_MS = 0,0
+        school_GP, school_MS, school_nan = 0,0,0
         if school == 'GP':
             school_GP = 1
         elif school == 'MS':
             school_MS = 1
+        else:
+            school_nan = 1
 
         data = [[dalc], [walc], [absences], [freetime], [studytime], 
                 [traveltime], [activities_no], [activities_yes], 
