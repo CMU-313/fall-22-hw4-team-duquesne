@@ -38,7 +38,7 @@ def configure_routes(app):
         higher = request.args.get('higher')
         internet = request.args.get('internet')
         
-        schoolsup_no, schoolsup_yes, schoolsup_nan = 0,0
+        schoolsup_no, schoolsup_yes, schoolsup_nan = 0,0,0
         if schoolsup == 'yes':
             schoolsup_yes = 1
         elif schoolsup == 'no':
