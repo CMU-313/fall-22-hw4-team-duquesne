@@ -66,7 +66,7 @@ def configure_routes(app):
             schoolsup_no = 1
         else:
             return 'Invalid school support status: expected yes or no'
-        
+       
         activities_no, activities_yes, actitvities_nan = 0,0,0
 
         if activities == 'yes':
