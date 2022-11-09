@@ -44,6 +44,7 @@ def test_predict_route_valid2():
     assert response.status_code == 200
     assert response.get_data() == b'0\n'
 
+
 def test_predict_route_missing_school():
     app = Flask(__name__)
     configure_routes(app)
