@@ -94,7 +94,7 @@ app.run(host="0.0.0.0", debug=True, port=80)
 ```terminal
 scikit-learn, pandas, numpy
 ```
-Link for [scikit-learn]: Machine Learning in Python: (https://github.com/scikit-learn/scikit-learn)
+Link for scikit-learn: Machine Learning in Python: (https://github.com/scikit-learn/scikit-learn)
 
 ## Testing
 
