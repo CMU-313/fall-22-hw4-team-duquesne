@@ -71,6 +71,34 @@ def test_predict_route_famsup_nonbinary():
     assert response.status_code == 200
     assert response.get_data() == b'Invalid family support status: expected yes or no'
 
+def test_predict_route_dalc_noninteger():
+    app = Flask(__name__)
+    configure_routes(app)
+    client = app.test_client()
+    url = '/predict'
+    # Summary of query string: Error - daily alcohol input is not an integer - expected warning string
+    # absences: 30, school: GP, studytime: 1, traveltime: 3, schoolsup: yes, 
+    # famsup: n0, paid: yes, higher: no, internet: yes, freetime: 4, Dalc: 1.5, 
+    # Walc: 2
+    query = '?absences=30&school=GP&studytime=1&traveltime=3&schoolsup=yes&famsup=no&paid=yes&activities=yes&higher=no&internet=yes&freetime=4&Dalc=1.5&Walc=2'
+    response = client.get(url+query)
+    assert response.status_code == 200
+    assert response.get_data() == b'Invalid daily alcohol consumption: expected integer between 1 - 4'
+
+def test_predict_route_travetime_outofrange():
+    app = Flask(__name__)
+    configure_routes(app)
+    client = app.test_client()
+    url = '/predict'
+    # Summary of query string: Error - travel time > 5 - expected warning string
+    # absences: 30, school: GP, studytime: 1, traveltime: 9, schoolsup: yes, 
+    # famsup: n0, paid: yes, higher: no, internet: yes, freetime: 4, Dalc: 1.5, 
+    # Walc: 2
+    query = '?absences=10&school=GP&studytime=1&traveltime=9&schoolsup=no&famsup=no&paid=yes&activities=no&higher=yes&internet=yes&freetime=1&Dalc=1&Walc=2'
+    response = client.get(url+query)
+    assert response.status_code == 200
+    assert response.get_data() == b'Invalid travel time: expected integer between 1 - 4'
+
     # correctJson = [
     # {"school": "GP", "traveltime": 1, "studytime": 2, "schoolsup": "no", "famsup": "no", "paid": "yes", 
     # "activities": "yes", "higher": "yes", "internet": "yes", "freetime": 3, "dalc": 3, "walc": 4, "absences": 12},
