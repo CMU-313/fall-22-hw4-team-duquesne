@@ -50,7 +50,9 @@ You can also specify which version of python you and your team should use under 
 
 ## Jupyter Notebook
 
-You should run your notebook in the virtual environment from pipenv.
+### Changes: trained and retrained machine learning model
+
+Please run the notebook in the virtual environment from pipenv.
 To do, you should run the following command from the root of your repository:
 
 ```terminal
