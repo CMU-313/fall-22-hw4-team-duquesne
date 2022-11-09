@@ -85,7 +85,8 @@ def test_predict_route_dalc_noninteger():
     assert response.status_code == 200
     assert response.get_data() == b'Invalid daily alcohol consumption: expected integer between 1 - 4'
 
-def test_predict_route_travetime_outofrange():
+
+def test_predict_route_traveltime_outofrange():
     app = Flask(__name__)
     configure_routes(app)
     client = app.test_client()
