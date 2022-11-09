@@ -121,7 +121,7 @@ cd app/handlers
 
 API tests can be found in `app/tests/test_routes.py`
 ```terminal
-cd app/handlers
+cd app/tests
 ```
 
 ## New Model Improvements
