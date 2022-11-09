@@ -90,6 +90,12 @@ You can alter the port number that is used by the Flask server by changing the f
 app.run(host="0.0.0.0", debug=True, port=80)
 ```
 
+## Machine Learning and Data-processing Tools
+```terminal
+scikit-learn, pandas, numpy
+```
+Link for [scikit-learn]: Machine Learning in Python: (https://github.com/scikit-learn/scikit-learn)
+
 ## Testing
 
 To run tests, execute the following command from the `app` directory:
@@ -104,8 +110,24 @@ If you're not in the Pipenv shell, then execute the following command from the `
 pipenv run pytest
 ```
 
-yaml documentation can be found in the openapi.yaml file
+## File Directory
 
-Configured data fields to match endpoints design can be found in app/handlers/routes.py
+yaml documentation can be found in the `openapi.yaml` file
 
-API tests can be found in app/tests/test_routes.py
+Configured data fields to match endpoints design can be found in `app/handlers/routes.py`
+```terminal
+cd app/handlers
+```
+
+API tests can be found in `app/tests/test_routes.py`
+```terminal
+cd app/handlers
+```
+
+## New Model Improvements
+The largest change we made on our model was the variables we used to train the model. We decided to include the variables `school`, `traveltime`, `studytime`, `schoolsup`, `famsup`, `paid`, `activities`, `higher`, `internet`, `freetime`, `dalc`, `walc`, and `absences`. We felt that each of these variables would be correlated to a students accademic success, and should, thus, be included in our model. 
+
+With these variables we added **cross validation** to ensure that our data model was not overfitting. We used the funciton `cross_val_score` which produced a number to estimate the skill of the machine on unsceen data. As such we were able to ensure the model was not overfitting by making sure the cross validation score wasn't too low while the accuracy score was high. We also split the data into test data and train data so that we would not be training and testing on the same data since this would also cause overfitting.
+
+With these two sets of data we were able to pass the training data into a **random forest classifier** which creates multiple trees by spliting on all of the variables in order to come up with a reasonable prediction of the G3 score. We then checked if this score was over 15, and if it was we considered them a qualified student. Through adding these different elements we were able to imporve the accuracy of the model by using helpful varaiables, making sure to avoid overfitting, and using an effective prediction method of the random forest classifier.
+
