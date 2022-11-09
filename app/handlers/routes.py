@@ -4,6 +4,7 @@ import joblib
 import pandas as pd
 import numpy as np
 import os
+import string
 
 def configure_routes(app):
 
@@ -36,7 +37,28 @@ def configure_routes(app):
         activities = request.args.get('activities')
         higher = request.args.get('higher')
         internet = request.args.get('internet')
+
+        # Handle out-of-range numerical input when necessary
+        if (not absences.isnumeric()) or int(absences) < 0 or int(absences) > 93:
+            return 'Invalid days of absences: expected integer between 0 - 93'
         
+        if (not traveltime.isnumeric()) or int(traveltime) < 0 or int(traveltime) >= 5:
+            return 'Invalid travel time: expected integer between 1 - 4'
+
+        if (not studytime.isnumeric()) or int(studytime) < 0 or int(studytime) >= 5:
+            return 'Invalid study time: expected integer between 1 - 4'
+        
+        if (not freetime.isnumeric()) or int(freetime) < 0 or int(freetime) >= 5:
+            return 'Invalid free time: expected integer between 1 - 4'
+        
+        if (not dalc.isnumeric()) or int(dalc) < 0 or int(dalc) >= 5:
+            return 'Invalid daily alcohol consumption: expected integer between 1 - 4'
+        
+        if (not walc.isnumeric()) or int(walc) < 0 or int(walc) >= 5:
+            return 'Invalid weekly alcohol consumption: expected integer between 1 - 4'
+        
+        # convert binary categorical data into binary number
+        # handle invalid input when necessary
         schoolsup_no, schoolsup_yes, schoolsup_nan = 0,0,0
         if schoolsup == 'yes':
             schoolsup_yes = 1
@@ -44,7 +66,7 @@ def configure_routes(app):
             schoolsup_no = 1
         else:
             return 'Invalid school support status: expected yes or no'
-        
+       
         activities_no, activities_yes, actitvities_nan = 0,0,0
 
         if activities == 'yes':
