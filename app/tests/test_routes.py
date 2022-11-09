@@ -44,6 +44,7 @@ def test_predict_route_valid2():
     assert response.status_code == 200
     assert response.get_data() == b'0\n'
 
+
 def test_predict_route_missing_school():
     app = Flask(__name__)
     configure_routes(app)
@@ -85,7 +86,8 @@ def test_predict_route_dalc_noninteger():
     assert response.status_code == 200
     assert response.get_data() == b'Invalid daily alcohol consumption: expected integer between 1 - 4'
 
-def test_predict_route_travetime_outofrange():
+
+def test_predict_route_traveltime_outofrange():
     app = Flask(__name__)
     configure_routes(app)
     client = app.test_client()
@@ -98,6 +100,7 @@ def test_predict_route_travetime_outofrange():
     response = client.get(url+query)
     assert response.status_code == 200
     assert response.get_data() == b'Invalid travel time: expected integer between 1 - 4'
+
 
     # correctJson = [
     # {"school": "GP", "traveltime": 1, "studytime": 2, "schoolsup": "no", "famsup": "no", "paid": "yes", 
