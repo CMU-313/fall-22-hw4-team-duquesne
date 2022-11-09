@@ -57,6 +57,7 @@ def test_predict_route_missing_school():
     assert response.status_code == 200
     assert response.get_data() == b'Invalid school: expected MS or GP'
 
+
 def test_predict_route_famsup_nonbinary():
     app = Flask(__name__)
     configure_routes(app)
