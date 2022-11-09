@@ -43,7 +43,7 @@ def configure_routes(app):
         elif schoolsup == 'no':
             schoolsup_no = 1
         else:
-            schoolsup_nan = 1
+            return 'Invalid school support status: expected yes or no'
         
         activities_no, activities_yes, actitvities_nan = 0,0,0
 
@@ -52,7 +52,7 @@ def configure_routes(app):
         elif activities == 'no':
             activities_no = 1
         else:
-            activities_nan = 1
+            return 'Invalid activities status: expected yes or no'
 
         famsup_no, famsup_yes, famsup_nan = 0,0,0
         if famsup == 'yes':
@@ -60,7 +60,7 @@ def configure_routes(app):
         elif famsup == 'no':
             famsup_no = 1
         else:
-            famsup_nan = 1
+            return 'Invalid family support status: expected yes or no'
         
         higher_no, higher_yes, famsup_nan = 0,0,0
         if higher == 'yes':
@@ -68,7 +68,7 @@ def configure_routes(app):
         elif higher == 'no':
             higher_no = 1
         else:
-            higher_nan = 1
+            return 'Invalid higher education status: expected yes or no'
 
         internet_no, internet_yes, internet_nan = 0,0,0
         if internet == 'yes':
@@ -76,7 +76,7 @@ def configure_routes(app):
         elif internet == 'no':
             internet_no = 1
         else:
-            internet_nan = 1
+            return 'Invalid internet status: expected yes or no'
         
         paid_no, paid_yes, paid_nan = 0,0,0
         if paid == 'yes':
@@ -84,7 +84,7 @@ def configure_routes(app):
         elif paid == 'no':
             paid_no = 1
         else:
-            paid_nan = 1
+            return 'Invalid paid status: expected yes or no'
         
         school_GP, school_MS, school_nan = 0,0,0
         if school == 'GP':
@@ -92,9 +92,8 @@ def configure_routes(app):
         elif school == 'MS':
             school_MS = 1
         else:
-            school_nan = 1
-        
-        
+            return 'Invalid school: expected MS or GP'
+
         data = [[dalc], [walc], [absences],
                 [freetime], [studytime], [traveltime], 
                 [activities_no], [activities_yes], 

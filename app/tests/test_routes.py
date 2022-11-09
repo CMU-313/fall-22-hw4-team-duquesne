@@ -51,7 +51,7 @@ def test_predict_route_missing_school():
     query = '?absences=6&studytime=2&traveltime=2&schoolsup=yes&famsup=no&paid=yes&activities=yes&higher=yes&internet=yes&freetime=2&Dalc=1&Walc=1'
     response = client.get(url+query)
     assert response.status_code == 200
-    assert response.get_data() == b'0\n'
+    assert response.get_data() == b'Invalid school: expected MS or GP'
 
 
     # correctJson = [
